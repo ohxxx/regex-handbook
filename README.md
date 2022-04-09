@@ -44,13 +44,20 @@
 | `u`  |          `unicode ` ，使用 unicode 码的模式进行匹配          | 表达式#1：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> true <br />表达式#2：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> false |
 
 
+## RegExp
+
+
 ## String
+|   方法    |                             说明                             | 示例                                                         |
+| :-------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+| `search`  |    返回正则匹配到的第一个子串在目标字符串中的 `位置索引`     | const str = 'world,halo'<br/>str.search(/halo/)<br />// >>> 6 |
+|  `split`  |  以正则匹配到的子串，对目标字符串 `进行切分` 。返回一个数组  | const str = 'world,halo.'<br/>str.split(/halo/)<br />// >>> ['world,', '.'] |
+|  `match`  | 对目标字符串执行正则 `匹配操作` ，返回的匹配结果数组中包含具体的匹配信息 | const str = 'world,halo.'<br/>str.match(/halo/)<br />// >>> ['halo', index: 6, input: 'world,halo.', groups: undefined] |
+| `replace` | 对目标字符串进行 `替换操作` 。正则是其第一个参数。返回替换后的字符串 | const str = 'world,halo.'<br/>str.replace(/halo/, 'hello')<br />// >>> 'world,hello.' |
 
 
 ## Replace
 
-
-## RegExp
 
 
 ### 参考

@@ -67,10 +67,10 @@
 
 |      字符      |             说明             |             示例             |
 | :-------------: | :--------------------------: | ---------------------------- |
-| `$1,$2,...,$99` | 匹配第1-99个分组里捕获的文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$1_xxx_")<br/><br />// >>> 'halo_xxx_.world,hello' |
-|      `$&`       | 匹配到的子串文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$&_xxx_")<br/><br />// >>> 'world,halo_xxx_.world,hello' |
-|      `$`\`      | 匹配到的子串的左边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$`_xxx_")<br/><br />// >>> '_xxx_.world,hello' |
-|       `$'`        | 匹配到子串的右边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$'_xxx_")<br/><br />// >>> '.world,hello_xxx_.world,hello' |
+| `$1,$2,...,$99` | 匹配第1-99个分组里捕获的文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$1\_xxx\_")<br/><br />// >>> 'halo\_xxx\_.world,hello' |
+|      `$&`       | 匹配到的子串文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$&\_xxx\_")<br/><br />// >>> 'world,halo\_xxx\_.world,hello' |
+|      `$`\`      | 匹配到的子串的左边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$`\_xxx\_")<br/><br />// >>> '\_xxx\_.world,hello' |
+|       `$'`        | 匹配到子串的右边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$'\_xxx\_")<br/><br />// >>> '.world,hello\_xxx\_.world,hello' |
 |       `$$`        | 美元符号 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$$")<br/><br />// >>> '$.world,hello' |
 
 ### 参考

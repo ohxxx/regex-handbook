@@ -55,10 +55,18 @@
 |  `match`  | 对目标字符串执行正则 `匹配操作` ，返回的匹配结果数组中包含具体的匹配信息 | const str = 'world,halo.'<br/>str.match(/halo/)<br />// >>> ['halo', index: 6, input: 'world,halo.', groups: undefined] |
 | `replace` | 对目标字符串进行 `替换操作` 。正则是其第一个参数。返回替换后的字符串 | const str = 'world,halo.'<br/>str.replace(/halo/, 'hello')<br />// >>> 'world,hello.' |
 
-
 ## Replace
 
+> 这里是对第二个参数的说明汇总
 
+
+|      字符      |             说明             |             示例             |
+| :-------------: | :--------------------------: | ---------------------------- |
+| `$1,$2,...,$99` | 匹配第1-99个分组里捕获的文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$1_xxx_")<br/>// >>> 'halo_xxx_.world,hello' |
+|      `$&`       | 匹配到的子串文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$&_xxx_")<br/>// >>> 'world,halo_xxx_.world,hello' |
+|      `$`\`      | 匹配到的子串的左边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$`_xxx_")<br/>// >>> '_xxx_.world,hello' |
+|       `$'`        | 匹配到子串的右边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$'_xxx_")<br/>// >>> '.world,hello_xxx_.world,hello' |
+|       `$$`        | 美元符号 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$$")<br/>// >>> '$.world,hello' |
 
 ### 参考
 - [Regexp Tutorial](https://www.runoob.com/regexp/regexp-tutorial.html)

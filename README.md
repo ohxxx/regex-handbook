@@ -41,19 +41,24 @@
 | `s`  | `single line - 单行匹配` ，更改 `.` 的含义，使它与每一个字符匹配（包括换行符 \n ） | 表达式：`/halo./gs`<br />测试文本：<br />1：`halo`<br/>world |
 | `d`  |   `indices - 指数`，返回正则表达式在目标字符串中匹配的索引   | 表达式：`/halo./gd`<br />测试文本：world，`halo`<br/><br />使用 `exec` 会返回一个 `indices` 的数组，代表正则表达式在目标字符串中开始到结束的索引 |
 | `y`  |       `sticky - 粘性`，匹配从目标字符串的当前位置开始        | 表达式#1：`/x+/y`<br />测试文本#1：`xxx`_xx_x<br /><br />表达式#2：`/x+/g`<br />测试文本#2：`xxx`_`xx`_`x` |
-| `u`  |          `unicode ` ，使用 unicode 码的模式进行匹配          | 表达式#1：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> true <br />表达式#2：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> false |
-
+| `u`  |          `unicode ` ，使用 unicode 码的模式进行匹配          | 表达式#1：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> true <br /><br />表达式#2：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> false |
 
 ## RegExp
 
+|  属性  |                        说明                        | 示例                                                         |
+| :----: | :------------------------------------------------: | ------------------------------------------------------------ |
+| `test` |    检索目标字符串中指定的值，返回 true 或 false    | /halo/g.test('world,halo.')<br/><br />// >>> true            |
+| `exec` | 检索目标字符串中指定值，返回找到的值，并确定其位置 | /halo/g.exec('world,halo.')<br/><br />// >>> ['halo', index: 6, input: 'world,halo.', groups: undefined] |
+
 
 ## String
-|   方法    |                             说明                             | 示例                                                         |
-| :-------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
-| `search`  |    返回正则匹配到的第一个子串在目标字符串中的 `位置索引`     | const str = 'world,halo'<br/>str.search(/halo/)<br />// >>> 6 |
-|  `split`  |  以正则匹配到的子串，对目标字符串 `进行切分` 。返回一个数组  | const str = 'world,halo.'<br/>str.split(/halo/)<br />// >>> ['world,', '.'] |
-|  `match`  | 对目标字符串执行正则 `匹配操作` ，返回的匹配结果数组中包含具体的匹配信息 | const str = 'world,halo.'<br/>str.match(/halo/)<br />// >>> ['halo', index: 6, input: 'world,halo.', groups: undefined] |
-| `replace` | 对目标字符串进行 `替换操作` 。正则是其第一个参数。返回替换后的字符串 | const str = 'world,halo.'<br/>str.replace(/halo/, 'hello')<br />// >>> 'world,hello.' |
+|    方法    |                             说明                             | 示例                                                         |
+| :--------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+|  `search`  |      返回匹配到的第一个子串在目标字符串中的 `位置索引`       | const str = 'world,halo'<br/>str.search(/halo/)<br /><br />// >>> 6 |
+|  `split`   |    以匹配到的子串，对目标字符串 `进行切分` 。返回一个数组    | const str = 'world,halo.'<br/>str.split(/halo/)<br /><br />// >>> ['world,', '.'] |
+|  `match`   |      返回匹配到的子串的结果数组，其中包含具体的匹配信息      | const str = 'world,halo.'<br/>str.match(/halo/)<br /><br />// >>> ['halo', index: 6, input: 'world,halo.', groups: undefined] |
+| `matchAll` | 返回匹配到的所有子串的结果数组，其中包含具体的匹配信息，返回值是一个迭代器 | [...'world,halo.halo,world'.matchAll(/halo/g)]<br /><br />// >>> [<br />['halo', index: 6, input: 'world,halo.halo,world', groups: undefined],['halo', index: 11, input: 'world,halo.halo,world', groups: undefined]<br />] |
+| `replace`  | 对目标字符串进行 `替换操作` 。正则是其第一个参数。返回替换后的字符串 | const str = 'world,halo.'<br/>str.replace(/halo/, 'hello')<br /><br />// >>> 'world,hello.' |
 
 ## Replace
 
@@ -62,11 +67,11 @@
 
 |      字符      |             说明             |             示例             |
 | :-------------: | :--------------------------: | ---------------------------- |
-| `$1,$2,...,$99` | 匹配第1-99个分组里捕获的文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$1_xxx_")<br/>// >>> 'halo_xxx_.world,hello' |
-|      `$&`       | 匹配到的子串文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$&_xxx_")<br/>// >>> 'world,halo_xxx_.world,hello' |
-|      `$`\`      | 匹配到的子串的左边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$`_xxx_")<br/>// >>> '_xxx_.world,hello' |
-|       `$'`        | 匹配到子串的右边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$'_xxx_")<br/>// >>> '.world,hello_xxx_.world,hello' |
-|       `$$`        | 美元符号 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$$")<br/>// >>> '$.world,hello' |
+| `$1,$2,...,$99` | 匹配第1-99个分组里捕获的文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$1_xxx_")<br/><br />// >>> 'halo_xxx_.world,hello' |
+|      `$&`       | 匹配到的子串文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$&_xxx_")<br/><br />// >>> 'world,halo_xxx_.world,hello' |
+|      `$`\`      | 匹配到的子串的左边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$`_xxx_")<br/><br />// >>> '_xxx_.world,hello' |
+|       `$'`        | 匹配到子串的右边文本 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$'_xxx_")<br/><br />// >>> '.world,hello_xxx_.world,hello' |
+|       `$$`        | 美元符号 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$$")<br/><br />// >>> '$.world,hello' |
 
 ### 参考
 - [Regexp Tutorial](https://www.runoob.com/regexp/regexp-tutorial.html)

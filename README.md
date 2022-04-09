@@ -33,6 +33,15 @@
 
 
 ## 修饰符
+| 符号 |                             说明                             | 示例                                                         |
+| :--: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+| `g`  |         `global - 全局匹配` ，找到所有满足匹配的子串         | 表达式：`/你好/g`<br />测试文本：<br />1：`你好`，世界，`你好`我好大家好 |
+| `i`  |     `ignore - 忽略大小写` , 匹配过程中 `忽略字母大小写`      | 表达式：`/halo/gi`<br />测试文本：<br />1：`halo`，world、`HaLo`，`HALO`，WORLD |
+| `m`  | `multi line - 多行匹配` ，把 `^` 和 `$` 变成  行开头  和  行结尾 | 表达式：`/halo/gm`<br />测试文本：<br />1：`halo`<br/>`halo`，world<br/>world，`halo` |
+| `s`  | `single line - 单行匹配` ，更改 `.` 的含义，使它与每一个字符匹配（包括换行符 \n ） | 表达式：`/halo./gs`<br />测试文本：<br />1：`halo`<br/>world |
+| `d`  |   `indices - 指数`，返回正则表达式在目标字符串中匹配的索引   | 表达式：`/halo./gd`<br />测试文本：world，`halo`<br/><br />使用 `exec` 会返回一个 `indices` 的数组，代表正则表达式在目标字符串中开始到结束的索引 |
+| `y`  |       `sticky - 粘性`，匹配从目标字符串的当前位置开始        | 表达式#1：`/x+/y`<br />测试文本#1：`xxx`_xx_x<br /><br />表达式#2：`/x+/g`<br />测试文本#2：`xxx`_`xx`_`x` |
+| `u`  |          `unicode ` ，使用 unicode 码的模式进行匹配          | 表达式#1：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> true <br />表达式#2：`/^\uD83D/.test('\uD83D\uDC2A')` // >>> false |
 
 
 ## String
@@ -42,3 +51,10 @@
 
 
 ## RegExp
+
+
+### 参考
+- [Regexp Tutorial](https://www.runoob.com/regexp/regexp-tutorial.html)
+- [MDN Regexp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+- [Regular 30-minute tutorial](https://deerchao.cn/tutorials/regex/regex.htm#howtouse)
+- [JS Regex Mini Book](https://github.com/qdlaoyao/js-regex-mini-book)

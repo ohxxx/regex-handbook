@@ -33,6 +33,14 @@
 
 ## 括号
 
+|      模式       |                             说明                             | 示例 |
+| :-------------: | :----------------------------------------------------------: | ---- |
+|     `(xxx)`     |           匹配 `xxx` ，并捕获文本到自动命名的组里            | 表达式：`\d{3}(xxx)\d{3}`<br />测试文本：`666xxx888` |
+|    `(?:xxx)`    |      匹配 `xxx` ，不捕获匹配的文本，也不给此分组分配组号      | 表达式：`(?:xxx)\d{3}`<br />测试文本：666`xxx888` |
+|  `(xxx | yyy)`  |           匹配 `xxx` 或 `yyy` ，并捕获文本到自动命名的组里。`捕获型分支结构`           | 表达式：`(xxx | yyy)\d{3}`<br />测试文本：666`yyy888` |
+| `(?:xxx | yyy)` | 匹配 `xxx` 或 `yyy`  ，不捕获匹配的文本，也不给此分组分配组号。`非捕获型分支结构`。 | 表达式：`(?:xxx |yyy)\d{3}`<br />测试文本：666`xxx888` |
+|     `\num`      | `后向引用` ，用于重复搜索前面某个分组匹配的文本。比如 `\1` ，表示引用的是第一个括号里的捕获的数据 | 表达式：`(?<=<(\w+)>)(.*?)(?=<\/(\1)>)`<br />测试文本：<div>`我是div标签`</div><span>`我是span标签`</span> |
+
 
 ## 字符组
 
@@ -96,7 +104,6 @@
 |       `$$`        | 美元符号 | const str = 'world,halo.world,hello'<br/>str.replace(/.*?(halo)/g, "$$")<br/><br />// >>> '$.world,hello' |
 
 ### 参考
-- [Regexp Tutorial](https://www.runoob.com/regexp/regexp-tutorial.html)
 - [MDN Regexp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 - [Regular 30-minute tutorial](https://deerchao.cn/tutorials/regex/regex.htm#howtouse)
 - [JS Regex Mini Book](https://github.com/qdlaoyao/js-regex-mini-book)
